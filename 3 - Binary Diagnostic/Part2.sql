@@ -3,7 +3,7 @@ GO
 
 CREATE TABLE dbo.DiagnosticReportEntry
 (
-	Binary char(12) NOT NULL
+	Binary char(5) NOT NULL
 )
 GO
 
@@ -15,7 +15,7 @@ BULK INSERT dbo.DiagnosticReportEntry  FROM 'C:\Code\advent-of-code-2021\3 - Bin
 GO
 
 DECLARE
-	@NumberOfBits int = 12,
+	@NumberOfBits int = 5,
 	@CurrentBitPosition int = 1,
 	@CurrentGammaRate int = 0,
 	@CurrentEpsilonRate int = 0
