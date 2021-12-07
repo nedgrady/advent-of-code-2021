@@ -1,9 +1,19 @@
 DROP TABLE IF EXISTS dbo.DiagnosticReportEntry
 GO
 
+DROP TABLE IF EXISTS #CO2ScrubberDiagnosticEntries
+GO
+
+DROP TABLE IF EXISTS dbo.Numbers
+GO
+SELECT	ROW_NUMBER() OVER (ORDER BY @@SPID) AS Number
+INTO	dbo.Numbers
+FROM	sys.all_objects
+GO
+
 CREATE TABLE dbo.DiagnosticReportEntry
 (
-	Binary char(5) NOT NULL
+	Binary char(12) NOT NULL
 )
 GO
 
@@ -14,42 +24,57 @@ BULK INSERT dbo.DiagnosticReportEntry  FROM 'C:\Code\advent-of-code-2021\3 - Bin
    WITH (FIELDTERMINATOR = ' ',  ROWTERMINATOR='\n')
 GO
 
+SELECT	Binary
+INTO	#CO2ScrubberDiagnosticEntries
+FROM	dbo.DiagnosticReportEntry
+
+
 DECLARE
-	@NumberOfBits int = 5,
-	@CurrentBitPosition int = 1,
-	@CurrentGammaRate int = 0,
-	@CurrentEpsilonRate int = 0
+	@NumberOfBits int = 12,
+	@CurrentBitPosition int = 1
 
 WHILE @CurrentBitPosition <= @NumberOfBits
 BEGIN
-	DECLARE @CurrentBitValueToSet int =
+
+	DELETE	dbo.DiagnosticReportEntry
+	WHERE	SUBSTRING(Binary, @CurrentBitPosition, 1) <>
 	(
-		SELECT Bit FROM 
-		(
-			SELECT	TOP (1) SUBSTRING(Binary, @CurrentBitPosition, 1) [Bit],
-					COUNT(*) [Count Of Bit]
-			FROM	dbo.DiagnosticReportEntry
-			GROUP BY	SUBSTRING(Binary, @CurrentBitPosition, 1)
-			ORDER BY [Count Of Bit] DESC
-		) AS MostCommonBit
+		SELECT	TOP (1) SUBSTRING(Binary, @CurrentBitPosition, 1) [Bit]
+		FROM	dbo.DiagnosticReportEntry
+		GROUP BY	SUBSTRING(Binary, @CurrentBitPosition, 1)
+		ORDER BY	COUNT(*) DESC,
+					Bit DESC
 	)
 
-	DECLARE @CurrentBitMask int = POWER(2,@NumberOfBits - @CurrentBitPosition)
-	
-	IF @CurrentBitValueToSet = 1
-	BEGIN
-		SET @CurrentGammaRate = @CurrentGammaRate + @CurrentBitMask
-	END
-	ELSE
-	BEGIN
-		SET @CurrentEpsilonRate = @CurrentEpsilonRate + @CurrentBitMask
-	END
-	
+	DELETE	#CO2ScrubberDiagnosticEntries
+	WHERE	SUBSTRING(Binary, @CurrentBitPosition, 1) <>
+	(
+		SELECT	TOP (1) SUBSTRING(Binary, @CurrentBitPosition, 1) [Bit]
+		FROM	#CO2ScrubberDiagnosticEntries
+		GROUP BY	SUBSTRING(Binary, @CurrentBitPosition, 1)
+		ORDER BY	COUNT(*) ASC,
+					Bit ASC
+	)
 	SET @CurrentBitPosition = @CurrentBitPosition + 1
 END
 
-SELECT
-	@CurrentGammaRate [Gamma Rate],
-	@CurrentEpsilonRate [Epsilon Rate],
-	@CurrentGammaRate * @CurrentEpsilonRate [Solution]
+DECLARE @OxygenGeneratorRating int =
+(
+	SELECT	SUM(CONVERT(int, SUBSTRING(Binary, Number, 1)) * POWER(2, @NumberOfBits - Number))
+	FROM	dbo.DiagnosticReportEntry
+			CROSS JOIN dbo.Numbers
+	WHERE	Number <= LEN(Binary)
+)
 
+DECLARE @CO2ScrubberRating int =
+(
+	SELECT	SUM(CONVERT(int, SUBSTRING(Binary, Number, 1)) * POWER(2, @NumberOfBits - Number))
+	FROM	#CO2ScrubberDiagnosticEntries
+			CROSS JOIN dbo.Numbers
+	WHERE	Number <= LEN(Binary)
+)
+
+SELECT
+	@OxygenGeneratorRating [Oxygen Generator Ratng],
+	@CO2ScrubberRating [CO2ScrubberRating],
+	@OxygenGeneratorRating * @CO2ScrubberRating [Solution]
