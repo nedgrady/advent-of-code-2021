@@ -1,6 +1,9 @@
+import java.awt.*;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class main {
     public static void main (String[] args) throws IOException {
@@ -11,8 +14,16 @@ public class main {
         var heightMap = new HeightMap(heightmapFileReader.ReadFromFile(inputTxtPath));
 
         var lowPoints = heightMap.getLowPoints();
-        var sumOfLowPointDangerLevels = Arrays.stream(lowPoints).sum() + lowPoints.length;
-        System.out.println("Sum of low point danger levels is " + sumOfLowPointDangerLevels);
+        var sumOfLowPointDangerLevels = Arrays.stream(lowPoints).mapToInt(lowPoint -> lowPoint.height).sum() + lowPoints.length;
+        System.out.println("Sum of low point danger levels is: " + sumOfLowPointDangerLevels);
 
+        var basinSizes = Arrays.stream(heightMap.getBasins())
+                .mapToInt(basin -> basin.getSize())
+                .boxed()
+                .sorted(Collections.reverseOrder())
+                .mapToInt(i -> i)
+                .toArray();
+
+        System.out.println("Product of top three basin sizes is: " + basinSizes[0] * basinSizes[1] * basinSizes[2]);
     }
 }

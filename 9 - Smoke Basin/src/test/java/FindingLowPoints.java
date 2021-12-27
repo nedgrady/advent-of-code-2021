@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import com.google.common.jimfs.*;
 
 import javax.naming.Name;
+import java.awt.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
@@ -11,7 +12,7 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FindingLowpoints {
+public class FindingLowPoints {
 
 
     @Test
@@ -23,8 +24,9 @@ public class FindingLowpoints {
         HeightMap heightMapUnderTest = new HeightMap(rawHeightMapData);
 
         var actualLowPoints = heightMapUnderTest.getLowPoints();
+        var expectedLowPoints = new HeightPoint[] { new HeightPoint(new Point(0, 0), 1) };
 
-        assertArrayEquals(new int[]{1}, actualLowPoints);
+        assertArrayEquals(expectedLowPoints, actualLowPoints);
     }
 
     @Test
@@ -36,8 +38,8 @@ public class FindingLowpoints {
         HeightMap heightMapUnderTest = new HeightMap(rawHeightMapData);
 
         var actualLowPoints = heightMapUnderTest.getLowPoints();
-
-        assertArrayEquals(new int[]{0}, actualLowPoints);
+        var expectedLowPoints = new HeightPoint[] { new HeightPoint(new Point(1, 0), 0) };
+        assertArrayEquals(expectedLowPoints, actualLowPoints);
     }
 
     @Test
@@ -49,8 +51,8 @@ public class FindingLowpoints {
         HeightMap heightMapUnderTest = new HeightMap(rawHeightMapData);
 
         var actualLowPoints = heightMapUnderTest.getLowPoints();
-
-        assertArrayEquals(new int[]{6}, actualLowPoints);
+        var expectedLowPoints = new HeightPoint[] { new HeightPoint(new Point(0, 1), 6) };
+        assertArrayEquals(expectedLowPoints, actualLowPoints);
     }
 
     @Test
@@ -62,8 +64,8 @@ public class FindingLowpoints {
         HeightMap heightMapUnderTest = new HeightMap(rawHeightMapData);
 
         var actualLowPoints = heightMapUnderTest.getLowPoints();
-
-        assertArrayEquals(new int[]{10}, actualLowPoints);
+        var expectedLowPoints = new HeightPoint[] { new HeightPoint(new Point(3, 1), 10) };
+        assertArrayEquals(expectedLowPoints, actualLowPoints);
     }
 
     @Test
@@ -78,7 +80,14 @@ public class FindingLowpoints {
         HeightMap heightMapUnderTest = new HeightMap(rawHeightMapData);
 
         var actualLowPoints = Arrays.stream(heightMapUnderTest.getLowPoints()).sorted().toArray();
+        var expectedLowPoints = new HeightPoint[] {
+                new HeightPoint(new Point(3, 1), 10),
+                new HeightPoint(new Point(1, 2), 1),
+                new HeightPoint(new Point(0, 4), 9),
+                new HeightPoint(new Point(4, 4), 2)
+        };
 
-        assertArrayEquals(new int[]{1, 2, 9, 10}, actualLowPoints);
+
+        assertArrayEquals(Arrays.stream(expectedLowPoints).sorted().toArray(), actualLowPoints);
     }
 }
