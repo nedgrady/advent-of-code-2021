@@ -21,7 +21,16 @@ var root = visitor.Visit(programContext);
 
 var totalSize = root.AllDescendants.Where(directory => directory.Size <= 100000).Sum(directory => directory.Size);
 
+const int FileSystemCapacity = 70000000;
+const int RequiredFreeSpaceForUpdate = 30000000;
+
+var remainingSpace = FileSystemCapacity - root.Size;
+var requiredSizeToDelete = RequiredFreeSpaceForUpdate - remainingSpace;
+
+var smallestBiggest = root.AllDescendants.Where(directory => directory.Size >= requiredSizeToDelete).MinBy(directory => directory.Size);
+
 Console.WriteLine($"Part 1, total size of all directories of size at most 100000 is {totalSize}");
+Console.WriteLine($"Part 2, size smallest biggest directory is {smallestBiggest.Size}");
 
 public class BasicConsoleInputOutputBaseVisitor : ConsoleInputOutputBaseVisitor<Directory>
 {
