@@ -15,23 +15,24 @@ namespace _8_Treetop_Tree_House
             var width = lines.First().Length;
             var height = lines.Length;
 
-            var treeData = new int[width, height];
-
             var treeGraph = new SquareGraphNode<int>[width, height];
 
-            for (int rowIndex = 0; rowIndex < lines.Length; rowIndex++)
+            for (int y = 0; y < lines.Length; y++)
             {
-                for (int columnIndex = 0; columnIndex < lines[rowIndex].Length; columnIndex++)
+                for (int x = 0; x < lines[y].Length; x++)
                 {
-                    var treeHeight = int.Parse(lines[rowIndex][columnIndex].ToString());
-                    treeData[rowIndex, columnIndex] = height;
-                    treeGraph[rowIndex, columnIndex] = new SquareGraphNode<int>(treeGraph, rowIndex, columnIndex, treeHeight);
+                    var treeHeight = int.Parse(lines[y][x].ToString());
+                    treeGraph[x, y] = new SquareGraphNode<int>(treeGraph, x, y, treeHeight);
                 }
             }
 
             var visibleTreesCount = treeGraph
                 .Cast<SquareGraphNode<int>>()
                 .Count(tree => tree.IsVisibleInAnyDirection());
+
+            var bestScenicScore = treeGraph
+                .Cast<SquareGraphNode<int>>()
+                .Max(tree => tree.ScenicScore());
         }
     }
 
@@ -49,10 +50,10 @@ namespace _8_Treetop_Tree_House
             Value = value;
         }
 
-        public SquareGraphNode<TNode> Left => _xCoordinate == 0 ? null : _treeData[_xCoordinate - 1, _yCoordinate];
-        public SquareGraphNode<TNode> Up => _yCoordinate == 0 ? null : _treeData[_xCoordinate, _yCoordinate - 1];
-        public SquareGraphNode<TNode> Right => _xCoordinate == _treeData.GetLength(1) - 1 ? null : _treeData[_xCoordinate + 1, _yCoordinate];
-        public SquareGraphNode<TNode> Down => _yCoordinate == _treeData.GetLength(0) - 1 ? null : _treeData[_xCoordinate, _yCoordinate + 1];
+        public SquareGraphNode<TNode>? Left => _xCoordinate == 0 ? null : _treeData[_xCoordinate - 1, _yCoordinate];
+        public SquareGraphNode<TNode>? Up => _yCoordinate == 0 ? null : _treeData[_xCoordinate, _yCoordinate - 1];
+        public SquareGraphNode<TNode>? Right => _xCoordinate == _treeData.GetLength(1) - 1 ? null : _treeData[_xCoordinate + 1, _yCoordinate];
+        public SquareGraphNode<TNode>? Down => _yCoordinate == _treeData.GetLength(0) - 1 ? null : _treeData[_xCoordinate, _yCoordinate + 1];
 
         public IEnumerable<SquareGraphNode<TNode>> AllLeft
         {
@@ -99,6 +100,11 @@ namespace _8_Treetop_Tree_House
         }
 
         public int Value { get; private set; }
+
+        public override string ToString()
+        {
+            return $"({_xCoordinate}, {_yCoordinate}) {Value}";
+        }
     }
 
     static class SquareGraphNodeExtensions
@@ -113,6 +119,82 @@ namespace _8_Treetop_Tree_House
                 squareGraphNode.AllDown.Any(tree => tree.Value >= squareGraphNode.Value) &&
                 squareGraphNode.AllUp.Any(tree => tree.Value >= squareGraphNode.Value));
         }
-    }
 
+        public static int ScenicScore(this SquareGraphNode<int> squareGraphNode)
+        {
+            return squareGraphNode.VisibleDown() * squareGraphNode.VisibleLeft() * squareGraphNode.VisibleRight() * squareGraphNode.VisibleUp();
+        }
+
+        public static int VisibleLeft(this SquareGraphNode<int> squareGraphNode)
+        {
+            if (squareGraphNode.Left == null)
+                return 0;
+
+            // Always one visible if we aren't on the edge
+            int visibletrees = 0;
+
+            foreach (var tree in squareGraphNode.AllLeft)
+            {
+                visibletrees++;
+                if (squareGraphNode.Value <= tree.Value)
+                    break;                
+            }
+
+            return visibletrees;
+        }
+
+        public static int VisibleRight(this SquareGraphNode<int> squareGraphNode)
+        {
+            if (squareGraphNode.Right == null)
+                return 0;
+
+            // Always one visible if we aren't on the edge
+            int visibletrees = 0;
+
+            foreach (var tree in squareGraphNode.AllRight)
+            {
+                visibletrees++;
+                if (squareGraphNode.Value <= tree.Value)
+                    break;
+            }
+
+            return visibletrees;
+        }
+
+        public static int VisibleUp(this SquareGraphNode<int> squareGraphNode)
+        {
+            if (squareGraphNode.Up == null)
+                return 0;
+
+            // Always one visible if we aren't on the edge
+            int visibletrees = 0;
+
+            foreach (var tree in squareGraphNode.AllUp)
+            {
+                visibletrees++;
+                if (squareGraphNode.Value <= tree.Value)
+                    break;
+            }
+
+            return visibletrees;
+        }
+
+        public static int VisibleDown(this SquareGraphNode<int> squareGraphNode)
+        {
+            if (squareGraphNode.Down == null)
+                return 0;
+
+            // Always one visible if we aren't on the edge
+            int visibletrees = 0;
+
+            foreach (var tree in squareGraphNode.AllDown)
+            {
+                visibletrees++;
+                if (squareGraphNode.Value <= tree.Value)
+                    break;
+            }
+
+            return visibletrees;
+        }
+    }
 }
