@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "8 Treetop Tree House", "8 T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{419A669B-847F-4324-A8DF-DFAA6D0481C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9 Rope Bridge", "9 Rope Bridge\9 Rope Bridge.csproj", "{468A2CDA-E2D3-462E-BF73-439CB18E4BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "9 Rope Bridge", "9 Rope Bridge\9 Rope Bridge.csproj", "{468A2CDA-E2D3-462E-BF73-439CB18E4BC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9 Rope Bridge.Tests", "9 Rope Bridge.Tests\9 Rope Bridge.Tests.csproj", "{2DA3AC6D-5101-4040-AA03-4737CFC0E1A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "9 Rope Bridge.Tests", "9 Rope Bridge.Tests\9 Rope Bridge.Tests.csproj", "{2DA3AC6D-5101-4040-AA03-4737CFC0E1A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10 Cathode-Ray Tube", "10 Cathode-Ray Tube\10 Cathode-Ray Tube.csproj", "{44B1813C-AE3C-4F42-90FE-2DA8E007F786}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{2DA3AC6D-5101-4040-AA03-4737CFC0E1A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DA3AC6D-5101-4040-AA03-4737CFC0E1A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DA3AC6D-5101-4040-AA03-4737CFC0E1A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44B1813C-AE3C-4F42-90FE-2DA8E007F786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44B1813C-AE3C-4F42-90FE-2DA8E007F786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44B1813C-AE3C-4F42-90FE-2DA8E007F786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44B1813C-AE3C-4F42-90FE-2DA8E007F786}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
