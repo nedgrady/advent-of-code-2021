@@ -13,7 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "9 Rope Bridge", "9 Rope Bri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "9 Rope Bridge.Tests", "9 Rope Bridge.Tests\9 Rope Bridge.Tests.csproj", "{2DA3AC6D-5101-4040-AA03-4737CFC0E1A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10 Cathode-Ray Tube", "10 Cathode-Ray Tube\10 Cathode-Ray Tube.csproj", "{44B1813C-AE3C-4F42-90FE-2DA8E007F786}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10 Cathode-Ray Tube", "10 Cathode-Ray Tube\10 Cathode-Ray Tube.csproj", "{44B1813C-AE3C-4F42-90FE-2DA8E007F786}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monkey in the Middle", "Monkey in the Middle\Monkey in the Middle.csproj", "{1F9B1F50-AF2E-47D6-8140-87B11A8F4E7B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monkey In The Middle Tests", "Monkey In The Middle Tests\Monkey In The Middle Tests.csproj", "{ED706746-BE5C-4931-80F3-ACB48118A982}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12 Hill Climbing Algorithm", "12 Hill Climbing Algorithm\12 Hill Climbing Algorithm.csproj", "{C69E58B6-917E-4DFD-9523-C7E33B9696EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +51,18 @@ Global
 		{44B1813C-AE3C-4F42-90FE-2DA8E007F786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44B1813C-AE3C-4F42-90FE-2DA8E007F786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44B1813C-AE3C-4F42-90FE-2DA8E007F786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F9B1F50-AF2E-47D6-8140-87B11A8F4E7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F9B1F50-AF2E-47D6-8140-87B11A8F4E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F9B1F50-AF2E-47D6-8140-87B11A8F4E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F9B1F50-AF2E-47D6-8140-87B11A8F4E7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED706746-BE5C-4931-80F3-ACB48118A982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED706746-BE5C-4931-80F3-ACB48118A982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED706746-BE5C-4931-80F3-ACB48118A982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED706746-BE5C-4931-80F3-ACB48118A982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C69E58B6-917E-4DFD-9523-C7E33B9696EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C69E58B6-917E-4DFD-9523-C7E33B9696EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C69E58B6-917E-4DFD-9523-C7E33B9696EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C69E58B6-917E-4DFD-9523-C7E33B9696EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

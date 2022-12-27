@@ -30,5 +30,14 @@
             yield return item;
         }
 
+        public static bool InclusivelyBetween(this int testee, int boundAlpha, int boundbravo)
+        {
+            return testee < Math.Max(boundAlpha, boundbravo) && testee > Math.Min(boundAlpha, boundbravo);
+        }
+
+        public static bool InclusivelyBetween(this char testee, char boundAlpha, char boundbravo)
+        {
+            return (testee <= Math.Max(boundAlpha, boundbravo)) && (testee >= Math.Min(boundAlpha, boundbravo));
+        }
     }
 }
