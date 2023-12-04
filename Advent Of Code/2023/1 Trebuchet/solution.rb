@@ -36,10 +36,10 @@ def get_calibration_value(calibration_line)
   (last_number.to_s + first_number.to_s).to_i
 end
 
-sum_of_calibration_values = 0
-
-(File.readlines './input.txt').each do |line|
-  sum_of_calibration_values += get_calibration_value(line)
+if __FILE__ == $0
+  sum_of_calibration_values = 0
+  (File.readlines './input.txt').each do |line|
+    sum_of_calibration_values += get_calibration_value(line)
+  end
+  puts sum_of_calibration_values
 end
-
-puts sum_of_calibration_values
