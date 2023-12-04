@@ -42,4 +42,5 @@ if __FILE__ == $0
     sum_of_calibration_values += get_calibration_value(line)
   end
   puts sum_of_calibration_values
+
 end

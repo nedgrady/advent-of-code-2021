@@ -17,6 +17,18 @@ class GameChecker
     !color_counts.any? { |color, value| value > @game_configuration_hash[color] }
   end
 
+  def power_of_minimum_set(game_record)
+    color_counts = {}
+    @game_configuration_hash.each_pair do |color, count|
+      find_the_color_regex = /\d+ #{color}/
+      max_for_color = game_record.scan(find_the_color_regex).map { |color_count| color_count.split(' ')[0].to_i }.max
+
+      color_counts[color] = max_for_color
+    end
+
+    color_counts.each_value.inject(:*)
+  end
+
 end
 
 
@@ -30,10 +42,14 @@ if __FILE__ == $0
 
   game_checker = GameChecker.new game_configuration_hash
   running_sum_of_ids = 0
+  running_sum_of_powers = 0
+
   (File.readlines './input.txt').each do |line|
     game_id = line.match(/Game (\d+):/)[1]
 
     running_sum_of_ids += game_id.to_i if game_checker.is_game_possible?(line)
+    running_sum_of_powers += game_checker.power_of_minimum_set(line)
   end
   puts running_sum_of_ids
+  puts running_sum_of_powers
 end
