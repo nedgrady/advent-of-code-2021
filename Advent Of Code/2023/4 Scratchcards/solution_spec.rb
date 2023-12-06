@@ -15,10 +15,17 @@ test_cases = [
 
 RSpec.describe 'solution' do
   test_cases.each do |test_case|
-    it 'Does a thing' do
+    it 'Part 1' do
       scratchcard = Scratchcard.new(test_case[:raw_value])
 
       expect(scratchcard.points).to eq(test_case[:expected_points])
     end
   end
+
+  it 'Card number' do
+    scratchcard = Scratchcard.new('Card 180: 18 98 61 58 87 41 51 37 28 79 | 65 32 36 92 49 45 10 93 40  4 67 76 55 42 88 30 75 44 23 71 98 51 14 78 24')
+
+    expect(scratchcard.card_number).to eq(180)
+  end
+
 end 

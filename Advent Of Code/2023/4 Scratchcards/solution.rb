@@ -12,9 +12,17 @@ class Scratchcard
     @raw_data.split(/\||\:/)[2].scan(/\d+/).map(&:to_i)
   end
 
+  def matching_numbers
+    winning_numbers.intersection(owned_numbers)
+  end
+
   def points
-    winning_number_count = winning_numbers.intersection(owned_numbers).length
+    winning_number_count = matching_numbers.length
     (2 ** (winning_number_count - 1)).floor
+  end
+
+  def card_number
+    @raw_data.scan(/Card (\d+)/)[0][0].to_i
   end
 end
 
