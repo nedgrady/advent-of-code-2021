@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monkey in the Middle", "Mon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monkey In The Middle Tests", "Monkey In The Middle Tests\Monkey In The Middle Tests.csproj", "{ED706746-BE5C-4931-80F3-ACB48118A982}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12 Hill Climbing Algorithm", "12 Hill Climbing Algorithm\12 Hill Climbing Algorithm.csproj", "{C69E58B6-917E-4DFD-9523-C7E33B9696EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "12 Hill Climbing Algorithm", "12 Hill Climbing Algorithm\12 Hill Climbing Algorithm.csproj", "{C69E58B6-917E-4DFD-9523-C7E33B9696EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordChain", "WordChain\WordChain.csproj", "{F3E98C3B-68A7-4AC8-97E3-E604994FF22F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{C69E58B6-917E-4DFD-9523-C7E33B9696EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C69E58B6-917E-4DFD-9523-C7E33B9696EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C69E58B6-917E-4DFD-9523-C7E33B9696EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3E98C3B-68A7-4AC8-97E3-E604994FF22F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E98C3B-68A7-4AC8-97E3-E604994FF22F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E98C3B-68A7-4AC8-97E3-E604994FF22F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E98C3B-68A7-4AC8-97E3-E604994FF22F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
