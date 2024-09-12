@@ -109,6 +109,37 @@ namespace WordChain
 
             receivedShortestPath.Should().BeEquivalentTo(testCase.ExpectedPath);
         }
+
+
+        [Test]
+        public void SolvesWordChainWithMultiplePaths()
+        {
+            WordChainTestCase testCase = new()
+            {
+                SourceWords =
+                {
+                    "aaa",
+                    "aab",
+                    "aba",
+                    "abb",
+                },
+                StartWord = "aaa",
+                EndWord = "bbb",
+                ExpectedPath =
+                {
+                    "aaa",
+                    "baa",
+                    "bba",
+                    "bbb"
+                }
+            };
+
+            var wordChainSolver = new WordChainSolver(testCase.SourceWords);
+
+            var receivedShortestPath = wordChainSolver.ShortestPathBetween(testCase.StartWord, testCase.EndWord).Single();
+
+            receivedShortestPath.Should().BeEquivalentTo(testCase.ExpectedPath);
+        }
     }
 
 
