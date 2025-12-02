@@ -19,8 +19,6 @@ namespace WordChain
 
             tryGetPaths(endWord, out var shortestPath);
 
-
-
             var firstResult =
                 shortestPath.Select(edge => edge.Source).Union(new[] { endWord });
 
